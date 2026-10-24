@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAMAROTE VIP Vol. 21 - Convite Exclusivo</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        hotpink: '#FF007F',
+                        crimson: '#C40000',
+                        darkbg: '#080808',
+                        cardbg: '#121216',
+                        silver: '#E2E8F0',
+                    },
+                    fontFamily: {
+                        impact: ['Anton', 'Impact', 'sans-serif'],
+                        body: ['Space Grotesk', 'sans-serif'],
+                    },
+                    keyframes: {
+                        flash: {
+                            '0%, 100%': { opacity: '0' },
+                            '10%, 25%': { opacity: '0.85' },
+                        },
+                        glimmer: {
+                            '0%, 100%': { filter: 'drop-shadow(0 0 5px #FF007F) contrast(1.2)' },
+                            '50%': { filter: 'drop-shadow(0 0 18px #FF007F) drop-shadow(0 0 10px #FFFFFF) contrast(1.5)' }
+                        },
+                        pulseFast: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.03)' }
+                        }
+                    },
+                    animation: {
+                        flash: 'flash 4s infinite',
+                        glimmer: 'glimmer 2.5s infinite ease-in-out',
+                        pulseFast: 'pulseFast 1.5s infinite ease-in-out'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Chrome Text Effect */
+        .chrome-text {
+            background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A1 35%, #4A4A4A 45%, #FFFFFF 55%, #E2E8F0 80%, #64748B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.9));
+        }
+
+        /* Rhinestone Glitz Effect */
+        .rhinestone-border {
+            border: 2px dashed #FF007F;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.6), inset 0 0 15px rgba(255, 0, 127, 0.4);
+        }
+
+        /* Scanline Texture Effect */
+        .scanlines {
+            background: linear-gradient(
+                rgba(18, 16, 16, 0) 50%, 
+                rgba(0, 0, 0, 0.25) 50%
+            ), linear-gradient(
+                90deg,
+                rgba(255, 0, 0, 0.03),
+                rgba(0, 255, 0, 0.01),
+                rgba(0, 0, 255, 0.03)
+            );
+            background-size: 100% 3px, 6px 100%;
+        }
+
+        /* Metallic Gradient Button */
+        .btn-chrome {
+            background: linear-gradient(135deg, #1f1f1f 0%, #3a3a3a 50%, #111111 100%);
+            border: 1px solid #FF007F;
+            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-chrome:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 0, 127, 0.7);
+            border-color: #FFFFFF;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080808;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FF007F;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-darkbg text-white font-body min-h-screen flex flex-col justify-between items-center selection:bg-hotpink selection:text-white relative overflow-x-hidden">
+
+    <!-- Flash Photography Simulation Effect -->
+    <div id="paparazzi-flash" class="pointer-events-none fixed inset-0 bg-white opacity-0 z-50 transition-opacity duration-100"></div>
+
+    <!-- Noise & Scanline Overlay -->
+    <div class="fixed inset-0 pointer-events-none scanlines z-40 opacity-40"></div>
+
+    <!-- MAIN WRAPPER (Smartphone Flyer Format) -->
+    <main class="w-full max-w-md mx-auto min-h-screen bg-cardbg border-x-2 border-hotpink/30 flex flex-col justify-between relative z-10 shadow-[0_0_50px_rgba(255,0,127,0.25)]">
+
+        <!-- Top Status Bar & Audio Player Toggle -->
+        <header class="p-4 bg-black/80 backdrop-blur-md sticky top-0 z-30 border-b border-hotpink/30 flex flex-col gap-2">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <span class="w-3 h-3 bg-hotpink rounded-full animate-ping"></span>
+                    <span class="text-xs font-bold tracking-widest text-hotpink uppercase">LISTA VIP: FECHADA</span>
+                </div>
+                
+                <!-- Soundtrack Player Button -->
+                <button id="sound-btn" onclick="toggleAudio()" class="text-xs bg-black/60 border border-hotpink px-3 py-1.5 rounded-full flex items-center gap-2 text-slate-200 hover:text-white transition shadow-[0_0_10px_rgba(255,0,127,0.3)]">
+                    <i id="sound-icon" class="fa-solid fa-play text-hotpink"></i>
+                    <span id="sound-text" class="font-bold uppercase text-[11px]">TRILHA: OFF</span>
+                </button>
+            </div>
+
+            <!-- Audio Track Information Indicator -->
+            <div id="audio-bar-info" class="bg-zinc-900/90 border border-hotpink/40 px-3 py-1 rounded-lg flex items-center justify-between text-[11px]">
+                <div class="flex items-center gap-2 overflow-hidden truncate">
+                    <i class="fa-solid fa-compact-disc text-hotpink animate-spin"></i>
+                    <span class="text-slate-300 font-semibold truncate">ADÉLA — <span class="text-hotpink font-bold">Nicole Kidman</span></span>
+                </div>
+                <span class="text-[10px] text-zinc-400 bg-black/60 px-1.5 py-0.5 rounded border border-zinc-700">HIT OFICIAL</span>
+            </div>
+        </header>
+
+        <!-- FLYER HERO SECTION -->
+        <section class="p-5 flex flex-col items-center text-center relative overflow-hidden">
+            <!-- Background Decorative Stars -->
+            <div class="absolute top-2 left-4 text-hotpink opacity-40 text-2xl animate-pulse">✦</div>
+            <div class="absolute top-10 right-6 text-white opacity-60 text-3xl">★</div>
+            <div class="absolute bottom-20 left-8 text-hotpink opacity-50 text-xl">✦</div>
+
+            <!-- Pre-Header Label -->
+            <div class="inline-block bg-hotpink text-black text-xs font-black px-3 py-0.5 rounded-full uppercase tracking-widest mb-3 rotate-[-2deg] shadow-lg">
+                Exclusive Invitation • 2010 Marcou uma Era
+            </div>
+
+            <!-- Title: CAMAROTE VIP -->
+            <div class="relative mb-1">
+                <h1 class="font-impact text-6xl sm:text-7xl tracking-tight uppercase chrome-text animate-glimmer leading-none drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
+                    CAMAROTE<br><span class="text-hotpink drop-shadow-[0_0_10px_#FF007F]">VIP</span>
+                </h1>
+            </div>
+
+            <!-- Subtitle / Vol. Badge -->
+            <div class="flex items-center gap-2 mb-4">
+                <span class="font-impact text-3xl text-white tracking-widest bg-black/80 border border-hotpink px-4 py-1 rounded-md shadow-md">
+                    VOL. 21
+                </span>
+                <span class="text-hotpink text-2xl">★</span>
+            </div>
+
+            <!-- Slogan -->
+            <p class="text-xs sm:text-sm italic font-semibold text-slate-300 max-w-xs mb-6 border-y border-hotpink/20 py-2">
+                "Entrada permitida. Saída questionável."
+            </p>
+
+            <!-- Grid of Photos / Vibe Collage (Y2K Flyer Style) -->
+            <div class="w-full grid grid-cols-3 gap-2 my-2 relative">
+                <div class="relative rounded overflow-hidden border border-hotpink/50 shadow-md aspect-square bg-slate-900 group">
+                    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=400&q=80" alt="Club Party" class="object-cover w-full h-full filter contrast-125 saturate-150 group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-hotpink/20 mix-blend-overlay"></div>
+                </div>
+                <div class="relative rounded overflow-hidden border border-white/50 shadow-md aspect-square bg-slate-900 group">
+                    <img src="https://images.unsplash.com/photo-1545128485-c400e7702796?auto=format&fit=crop&w=400&q=80" alt="DJ Night" class="object-cover w-full h-full filter contrast-125 saturate-150 group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-purple-900/30 mix-blend-color-dodge"></div>
+                </div>
+                <div class="relative rounded overflow-hidden border border-hotpink/50 shadow-md aspect-square bg-slate-900 group">
+                    <img src="https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?auto=format&fit=crop&w=400&q=80" alt="Pop Lights" class="object-cover w-full h-full filter contrast-125 saturate-150 group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-hotpink/20 mix-blend-overlay"></div>
+                </div>
+            </div>
+
+            <!-- Date & Time Highlights -->
+            <div class="w-full bg-black/90 border-2 border-hotpink/60 rounded-xl p-3 my-4 flex justify-between items-center text-left shadow-[0_0_15px_rgba(255,0,127,0.2)]">
+                <div>
+                    <span class="text-[10px] uppercase tracking-widest text-slate-400 block">DATA D-DAY</span>
+                    <span class="font-impact text-2xl text-white">DOMINGO, 01 NOV</span>
+                </div>
+                <div class="text-right border-l border-slate-800 pl-3">
+                    <span class="text-[10px] uppercase tracking-widest text-hotpink block">DOOR OPEN</span>
+                    <span class="font-impact text-2xl text-hotpink">19:00 H</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE ACCORDION BUTTONS (ANEXOS) -->
+        <section class="px-5 space-y-3 my-2">
+            
+            <!-- BUTTON 1: LOCAL & HORÁRIO -->
+            <button onclick="openModal('modal-local')" class="w-full btn-chrome p-3.5 rounded-xl flex items-center justify-between text-left group">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-lg bg-hotpink/20 border border-hotpink flex items-center justify-center text-hotpink group-hover:bg-hotpink group-hover:text-black transition shrink-0">
+                        <i class="fa-solid fa-location-dot text-lg"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-impact text-lg text-white uppercase tracking-wide">1. Local & Horário</h2>
+                        <p class="text-xs text-slate-400">Aracaju • Endereço ultrassecreto</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right text-hotpink text-sm group-hover:translate-x-1 transition shrink-0"></i>
+            </button>
+
+            <!-- BUTTON 2: DRESS CODE -->
+            <button onclick="openModal('modal-dress')" class="w-full btn-chrome p-3.5 rounded-xl flex items-center justify-between text-left group">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-lg bg-hotpink/20 border border-hotpink flex items-center justify-center text-hotpink group-hover:bg-hotpink group-hover:text-black transition">
+                        <i class="fa-solid fa-glasses text-lg"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-impact text-lg text-white uppercase tracking-wide">2. Dress Code Official</h2>
+                        <p class="text-xs text-slate-400">Para Divas & Para Divos / It Boys</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right text-hotpink text-sm group-hover:translate-x-1 transition"></i>
+            </button>
+
+            <!-- BUTTON 3: DICAS DE PRESENTES -->
+            <button onclick="openModal('modal-presents')" class="w-full btn-chrome p-3.5 rounded-xl flex items-center justify-between text-left group">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-lg bg-hotpink/20 border border-hotpink flex items-center justify-center text-hotpink group-hover:bg-hotpink group-hover:text-black transition">
+                        <i class="fa-solid fa-gift text-lg"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-impact text-lg text-white uppercase tracking-wide">3. Mimos da Anfitriã</h2>
+                        <p class="text-xs text-slate-400">Wishlist exclusiva da diva</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right text-hotpink text-sm group-hover:translate-x-1 transition"></i>
+            </button>
+
+            <!-- BUTTON 4: SPOILER PLAYLIST -->
+            <button onclick="openModal('modal-playlist')" class="w-full btn-chrome p-3.5 rounded-xl flex items-center justify-between text-left group">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-lg bg-hotpink/20 border border-hotpink flex items-center justify-center text-hotpink group-hover:bg-hotpink group-hover:text-black transition">
+                        <i class="fa-solid fa-compact-disc text-lg animate-spin-slow"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-impact text-lg text-white uppercase tracking-wide">4. Spoiler da Playlist</h2>
+                        <p class="text-xs text-slate-400">Hits Pop & Funk no Spotify</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-right text-hotpink text-sm group-hover:translate-x-1 transition"></i>
+            </button>
+
+        </section>
+
+        <!-- RSVP MAIN CALL TO ACTION -->
+        <section class="p-5 mt-4">
+            <div class="p-0.5 bg-gradient-to-r from-hotpink via-white to-hotpink rounded-2xl animate-pulseFast">
+                <button onclick="openModal('modal-rsvp')" class="w-full bg-black hover:bg-zinc-900 text-white p-4 rounded-[14px] flex flex-col items-center justify-center transition group">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-ticket text-hotpink text-xl"></i>
+                        <span class="font-impact text-2xl uppercase tracking-wider text-white group-hover:text-hotpink transition">
+                            CONFIRMAR PRESENÇA
+                        </span>
+                    </div>
+                    <span class="text-[11px] text-slate-400 mt-0.5 uppercase tracking-widest">Gere sua Credencial VIP de Acesso</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- FOOTER BARCODE & DISCLAMER -->
+        <footer class="p-4 bg-black text-center border-t border-zinc-800 space-y-2">
+            <div class="flex justify-center items-center gap-1 opacity-70">
+                <!-- Decorative Barcode -->
+                <div class="h-8 w-44 bg-white px-1 flex justify-between items-center overflow-hidden">
+                    <div class="w-1 h-full bg-black"></div>
+                    <div class="w-2 h-full bg-black"></div>
+                    <div class="w-0.5 h-full bg-black"></div>
+                    <div class="w-3 h-full bg-black"></div>
+                    <div class="w-1 h-full bg-black"></div>
+                    <div class="w-0.5 h-full bg-black"></div>
+                    <div class="w-2 h-full bg-black"></div>
+                    <div class="w-1 h-full bg-black"></div>
+                    <div class="w-3 h-full bg-black"></div>
+                    <div class="w-0.5 h-full bg-black"></div>
+                    <div class="w-2 h-full bg-black"></div>
+                    <div class="w-1 h-full bg-black"></div>
+                </div>
+            </div>
+            <p class="text-[10px] text-slate-500 uppercase tracking-widest">
+                CAMAROTE VIP VOL. 21 • 2010 MARCOU UMA ERA • 2026
+            </p>
+        </footer>
+
+    </main>
+
+    <!-- ==================== MODALS / ATTACHMENTS ==================== -->
+
+    <!-- MODAL 1: LOCAL & MAP (REVELAÇÃO DIVERTIDA) -->
+    <div id="modal-local" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex justify-center items-center p-4">
+        <div class="bg-cardbg border-2 border-hotpink w-full max-w-sm rounded-2xl p-5 relative text-slate-200 shadow-[0_0_30px_rgba(255,0,127,0.4)]">
+            <button onclick="closeModal('modal-local')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="flex items-center gap-2 mb-3">
+                <i class="fa-solid fa-location-dot text-hotpink text-2xl"></i>
+                <h3 class="font-impact text-2xl text-white uppercase">Localização & Horário</h3>
+            </div>
+
+            <div class="space-y-4 text-sm">
+                <div class="bg-black/60 p-3.5 rounded-xl border border-hotpink/40 text-center relative overflow-hidden">
+                    <span class="bg-hotpink text-black text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider inline-block mb-1">CONFIDENCIAL VIP</span>
+                    <p class="text-white font-bold text-base mt-1">Aracaju - SE (AJU)</p>
+                    <p class="text-slate-300 text-xs mt-2 italic">
+                        "O local exato ainda está em sigilo absoluto para evitar penetras e vazamentos na imprensa! O PIN da localização será enviado diretamente no seu WhatsApp no dia da festa."
+                    </p>
+                </div>
+
+                <div class="bg-black/60 p-3 rounded-lg border border-zinc-800 space-y-1">
+                    <div class="flex justify-between text-xs">
+                        <span class="text-slate-400">Data:</span>
+                        <span class="text-white font-bold">Domingo, 01 de Novembro</span>
+                    </div>
+                    <div class="flex justify-between text-xs">
+                        <span class="text-slate-400">Abertura dos Portões:</span>
+                        <span class="text-hotpink font-bold">19:00 H</span>
+                    </div>
+                    <div class="flex justify-between text-xs">
+                        <span class="text-slate-400">Lounge VIP:</span>
+                        <span class="text-white font-bold">Até 20:30 H</span>
+                    </div>
+                    <div class="flex justify-between text-xs">
+                        <span class="text-slate-400">Encerramento:</span>
+                        <span class="text-hotpink font-bold">Até o último drink</span>
+                    </div>
+                </div>
+
+                <button onclick="closeModal('modal-local')" class="w-full btn-chrome py-3 rounded-xl flex justify-center items-center gap-2 font-impact text-white uppercase text-center block">
+                    <i class="fa-solid fa-lock text-hotpink"></i> Guardar Segredo & Voltar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: DRESS CODE (Termos Inclusivos & Sem Símbolos de Gênero) -->
+    <div id="modal-dress" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex justify-center items-center p-4">
+        <div class="bg-cardbg border-2 border-hotpink w-full max-w-sm rounded-2xl p-5 relative text-slate-200 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('modal-dress')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="flex items-center gap-2 mb-3">
+                <i class="fa-solid fa-crown text-hotpink text-2xl"></i>
+                <h3 class="font-impact text-2xl text-white uppercase">Dress Code Official</h3>
+            </div>
+
+            <p class="text-xs text-slate-300 italic mb-4">
+                "2010 marcou uma era. Não é fantasia retrô, é atitude clubber, pop e debochada de camarote!"
+            </p>
+
+            <div class="space-y-3">
+                <!-- Seção 1: Para Divas -->
+                <div class="bg-hotpink/10 border border-hotpink/60 p-3 rounded-xl">
+                    <h4 class="font-bold text-hotpink text-xs uppercase flex items-center gap-1.5 mb-2">
+                        <i class="fa-solid fa-sparkles text-hotpink"></i> PARA DIVAS:
+                    </h4>
+                    <ul class="text-xs space-y-1.5 text-slate-200 list-disc list-inside">
+                        <li><strong>Mini tudo:</strong> Mini saia, mini short, mini vestido!</li>
+                        <li>Silhuetas ousadas e recortes estratégicos</li>
+                        <li>Strass no rosto, na roupa ou no acessório</li>
+                        <li>Bota bafônica, salto poderoso ou tênis clubber alto</li>
+                        <li>Gloss labial nos lábios e olhar de celebridade pós-flash</li>
+                    </ul>
+                </div>
+
+                <!-- Seção 2: Para Divos / It Boys -->
+                <div class="bg-purple-950/40 border border-purple-500/50 p-3 rounded-xl">
+                    <h4 class="font-bold text-purple-300 text-xs uppercase flex items-center gap-1.5 mb-2">
+                        <i class="fa-solid fa-star text-purple-400"></i> PARA DIVOS / IT BOYS:
+                    </h4>
+                    <ul class="text-xs space-y-1.5 text-slate-200 list-disc list-inside">
+                        <li><strong>Justin Bieber Era (Believe / Purpose):</strong> Oversized, streetwear pesado, regata canelada, bermuda ou calça cargo estilizada</li>
+                        <li><strong>Luan Santana 2010s Glam:</strong> Correntaria de prata, jaqueta icônica, gola V/canelada alinhada</li>
+                        <li>Óculos espelhados / vibes Oakley Juliet</li>
+                        <li>Boné aba reta/curva com atitude, pulseiras e tênis de presença</li>
+                    </ul>
+                </div>
+
+                <!-- Barrado -->
+                <div class="bg-rose-950/40 border border-rose-500/50 p-3 rounded-xl">
+                    <h4 class="font-bold text-rose-400 text-xs uppercase flex items-center gap-1.5 mb-2">
+                        <i class="fa-solid fa-ban text-rose-400"></i> BARRADO NA PORTA:
+                    </h4>
+                    <ul class="text-xs space-y-1.5 text-slate-300 list-disc list-inside">
+                        <li>Sapatilha sem graça e energia de tédio</li>
+                        <li>Look básico de escritório sem nenhum brilho/acessório</li>
+                        <li>Julgar o gosto musical alheio</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: DICAS DE PRESENTES (WISHLIST DA ANFITRIÃ) -->
+    <div id="modal-presents" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex justify-center items-center p-4">
+        <div class="bg-cardbg border-2 border-hotpink w-full max-w-sm rounded-2xl p-5 relative text-slate-200 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('modal-presents')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="flex items-center gap-2 mb-3">
+                <i class="fa-solid fa-gift text-hotpink text-2xl"></i>
+                <h3 class="font-impact text-2xl text-white uppercase">Mimos para a Anfitriã</h3>
+            </div>
+
+            <p class="text-xs text-slate-300 mb-4">
+                Sua presença é o maior presente! Mas se quiser mimar a anfitriã do Vol. 21, aqui está a Wishlist VIP oficial:
+            </p>
+
+            <div class="space-y-2 text-xs">
+                <div class="bg-black/60 p-2.5 rounded-lg border border-zinc-800 flex items-center justify-between">
+                    <div>
+                        <span class="font-bold text-white block">✨ Acessórios de Prata</span>
+                        <span class="text-slate-400 text-[10px]">Brincos, anéis ou correntes prateadas</span>
+                    </div>
+                    <i class="fa-solid fa-gem text-hotpink"></i>
+                </div>
+
+                <div class="bg-black/60 p-2.5 rounded-lg border border-zinc-800 flex items-center justify-between">
+                    <div>
+                        <span class="font-bold text-white block">🔋 Power Bank</span>
+                        <span class="text-slate-400 text-[10px]">Para a bateria durar até o amanhecer</span>
+                    </div>
+                    <i class="fa-solid fa-battery-full text-hotpink"></i>
+                </div>
+
+                <div class="bg-black/60 p-2.5 rounded-lg border border-zinc-800 flex items-center justify-between">
+                    <div>
+                        <span class="font-bold text-white block">🎧 Fones de Ouvido</span>
+                        <span class="text-slate-400 text-[10px]">Para ouvir o spoiler da playlist no repeat</span>
+                    </div>
+                    <i class="fa-solid fa-headphones text-hotpink"></i>
+                </div>
+
+                <div class="bg-black/60 p-2.5 rounded-lg border border-zinc-800 flex items-center justify-between">
+                    <div>
+                        <span class="font-bold text-white block">⚽ Blusa do Time Confiança</span>
+                        <span class="text-slate-400 text-[10px]">O manto azul e branco do coração</span>
+                    </div>
+                    <i class="fa-solid fa-shirt text-hotpink"></i>
+                </div>
+
+                <div class="bg-black/60 p-2.5 rounded-lg border border-zinc-800 flex items-center justify-between">
+                    <div>
+                        <span class="font-bold text-white block">💄 Make: Bronzer & Pincéis</span>
+                        <span class="text-slate-400 text-[10px]">Itens de make (bronzer e pincéis em especial)</span>
+                    </div>
+                    <i class="fa-solid fa-wand-magic-sparkles text-hotpink"></i>
+                </div>
+
+                <div class="bg-black/60 p-2.5 rounded-lg border border-zinc-800 flex items-center justify-between">
+                    <div>
+                        <span class="font-bold text-white block">👙 Biquíni Arrumado</span>
+                        <span class="text-slate-400 text-[10px]">Para o pool party pós-balada</span>
+                    </div>
+                    <i class="fa-solid fa-water text-hotpink"></i>
+                </div>
+
+                <div class="bg-black/60 p-2.5 rounded-lg border border-zinc-800 flex items-center justify-between">
+                    <div>
+                        <span class="font-bold text-white block">✨ Produtos de Cabelo Ápice</span>
+                        <span class="text-slate-400 text-[10px]">Cuidado capilar de milhões</span>
+                    </div>
+                    <i class="fa-solid fa-wand-magic text-hotpink"></i>
+                </div>
+
+                <div class="bg-black/60 p-2.5 rounded-lg border border-zinc-800 flex items-center justify-between">
+                    <div>
+                        <span class="font-bold text-white block">🩴 Havaianas (36)</span>
+                        <span class="text-slate-400 text-[10px]">Tamanho 36 para descer do salto</span>
+                    </div>
+                    <i class="fa-solid fa-shoe-prints text-hotpink"></i>
+                </div>
+
+                <div class="bg-black/60 p-2.5 rounded-lg border border-zinc-800 flex items-center justify-between">
+                    <div>
+                        <span class="font-bold text-white block">🧢 Boné "AJU" Vermelho com Estrela</span>
+                        <span class="text-slate-400 text-[10px]">Marca: flo.streetwear</span>
+                    </div>
+                    <i class="fa-solid fa-hat-cowboy text-hotpink"></i>
+                </div>
+
+                <div class="bg-black/60 p-2.5 rounded-lg border border-zinc-800 flex items-center justify-between">
+                    <div>
+                        <span class="font-bold text-white block">🏋️‍♀️ Roupa de Academia</span>
+                        <span class="text-slate-400 text-[10px]">Para manter o shape no pós-festa</span>
+                    </div>
+                    <i class="fa-solid fa-dumbbell text-hotpink"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 4: PLAYLIST SPOILER -->
+    <div id="modal-playlist" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex justify-center items-center p-4">
+        <div class="bg-cardbg border-2 border-hotpink w-full max-w-sm rounded-2xl p-5 relative text-slate-200">
+            <button onclick="closeModal('modal-playlist')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="flex items-center gap-2 mb-3">
+                <i class="fa-solid fa-compact-disc text-hotpink text-2xl"></i>
+                <h3 class="font-impact text-2xl text-white uppercase">Playlist VIP Oficial</h3>
+            </div>
+
+            <p class="text-xs text-slate-400 mb-3">Sua playlist exclusiva selecionada para o Vol. 21:</p>
+
+            <!-- Embedded Spotify iFrame Player -->
+            <div class="w-full rounded-xl overflow-hidden mb-4 border border-hotpink/40 shadow-lg">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/64nC1kwxbsKBzCVZBAm0KC?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+
+            <a href="https://open.spotify.com/playlist/64nC1kwxbsKBzCVZBAm0KC?si=Uf8hTz1CSr-gxXBR_RNXXg" target="_blank" onclick="triggerFlash()" class="w-full bg-emerald-600 hover:bg-emerald-500 py-3 rounded-xl flex justify-center items-center gap-2 font-impact text-white uppercase text-center block transition shadow-md">
+                <i class="fa-brands fa-spotify text-xl"></i> Abrir Playlist no App
+            </a>
+        </div>
+    </div>
+
+    <!-- MODAL RSVP & VIP PASS GENERATOR -->
+    <div id="modal-rsvp" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex justify-center items-center p-4">
+        <div class="bg-cardbg border-2 border-hotpink w-full max-w-sm rounded-2xl p-5 relative text-slate-200">
+            <button onclick="closeModal('modal-rsvp')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="rsvp-form-container">
+                <div class="text-center mb-4">
+                    <i class="fa-solid fa-id-card text-hotpink text-3xl mb-1"></i>
+                    <h3 class="font-impact text-2xl text-white uppercase">Confirmar Presença</h3>
+                    <p class="text-xs text-slate-400">Digite seu nome para gerar a Credencial VIP</p>
+                </div>
+
+                <form onsubmit="generateVIPPass(event)" class="space-y-3">
+                    <div>
+                        <label class="text-[11px] font-bold uppercase text-slate-300 block mb-1">Seu Nome / Nome Artístico:</label>
+                        <input id="guest-name" type="text" required placeholder="Ex: Nicole Kidman / Anitta" class="w-full bg-black border border-zinc-700 focus:border-hotpink p-3 rounded-xl text-white text-sm outline-none">
+                    </div>
+
+                    <div>
+                        <label class="text-[11px] font-bold uppercase text-slate-300 block mb-1">Status da Entrada:</label>
+                        <select class="w-full bg-black border border-zinc-700 p-3 rounded-xl text-white text-sm outline-none">
+                            <option>Diva VIP - Acesso Livre ao Camarote</option>
+                            <option>It Boy / Divo - Entrada Preferencial</option>
+                            <option>Acompanhante de Celebridade</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="w-full bg-hotpink hover:bg-pink-600 text-black font-impact text-lg py-3 rounded-xl uppercase tracking-wider transition">
+                        Emitir Passaporte VIP
+                    </button>
+                </form>
+            </div>
+
+            <!-- VIP PASS TICKET RESULT -->
+            <div id="vip-ticket-result" class="hidden text-center space-y-3">
+                <div class="border-2 border-hotpink bg-black p-4 rounded-xl relative overflow-hidden shadow-[0_0_20px_rgba(255,0,127,0.5)]">
+                    <div class="absolute -right-8 -top-8 bg-hotpink text-black text-[9px] font-black uppercase tracking-widest px-8 py-1 rotate-45">
+                        CONFIRMADO
+                    </div>
+                    
+                    <span class="text-[10px] text-hotpink font-mono tracking-widest uppercase block">CAMAROTE VIP VOL. 21</span>
+                    <h4 id="pass-guest-name" class="font-impact text-2xl text-white uppercase my-1 chrome-text">NOME DO CONVIDADO</h4>
+                    
+                    <div class="my-2 border-y border-zinc-800 py-2 text-left text-[11px] space-y-1 text-slate-300">
+                        <p><strong class="text-hotpink">TIPO:</strong> CREDENCIAL VIP</p>
+                        <p><strong class="text-hotpink">STATUS:</strong> NOME NA LISTA VIP</p>
+                        <p><strong class="text-hotpink">DATA:</strong> DOM, 01/11 - 19:00H</p>
+                    </div>
+
+                    <!-- Fake QR Code -->
+                    <div class="flex justify-center my-3">
+                        <div class="bg-white p-2 rounded-lg">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=CAMAROTE-VIP-VOL21" alt="VIP Pass QR Code" class="w-20 h-20">
+                        </div>
+                    </div>
+
+                    <p class="text-[9px] text-slate-500 uppercase">Apresente este print na entrada do Camarote</p>
+                </div>
+
+                <button onclick="closeModal('modal-rsvp')" class="w-full btn-chrome py-2 rounded-xl font-impact text-sm text-white uppercase">
+                    Fechar & Guardar Print
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AUDIO ELEMENT & JAVASCRIPT LOGIC -->
+    <script>
+        // Web Audio Synthesizer Pop Beat simulating ADÉLA - Nicole Kidman
+        let audioCtx = null;
+        let isPlaying = false;
+        let timerId = null;
+
+        function playSynthSound() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            // High Energy Electronic Pop Bass Sequence
+            const bassNotes = [130.81, 130.81, 155.56, 174.61, 196.00, 155.56]; 
+            let step = 0;
+
+            timerId = setInterval(() => {
+                if (!isPlaying) return;
+                
+                // Bass Oscillator
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'sawtooth';
+                osc.frequency.value = bassNotes[step % bassNotes.length];
+                
+                gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.22);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.22);
+                
+                step++;
+            }, 200);
+        }
+
+        function toggleAudio() {
+            const icon = document.getElementById('sound-icon');
+            const text = document.getElementById('sound-text');
+            
+            isPlaying = !isPlaying;
+            
+            if (isPlaying) {
+                icon.className = "fa-solid fa-pause text-hotpink";
+                text.innerText = "TRILHA: ON";
+                playSynthSound();
+                triggerFlash();
+            } else {
+                icon.className = "fa-solid fa-play text-hotpink";
+                text.innerText = "TRILHA: OFF";
+                if (timerId) clearInterval(timerId);
+            }
+        }
+
+        // Paparazzi Flash Effect Simulation
+        function triggerFlash() {
+            const flash = document.getElementById('paparazzi-flash');
+            flash.style.opacity = '0.9';
+            setTimeout(() => {
+                flash.style.opacity = '0';
+            }, 120);
+        }
+
+        // Modal Controls
+        function openModal(modalId) {
+            triggerFlash();
+            document.getElementById(modalId).classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        // VIP Pass Generator
+        function generateVIPPass(event) {
+            event.preventDefault();
+            triggerFlash();
+            const nameInput = document.getElementById('guest-name').value;
+            document.getElementById('pass-guest-name').innerText = nameInput;
+            
+            document.getElementById('rsvp-form-container').classList.add('hidden');
+            document.getElementById('vip-ticket-result').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
